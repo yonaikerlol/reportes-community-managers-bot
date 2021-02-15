@@ -1,0 +1,41 @@
+name: Continuous Update
+
+on:
+    push:
+        branches:
+            - master
+        paths:
+            - "composer.json"
+            - "composer.lock"
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Setup PHP
+              uses: actions/setup-php@v1
+              with:
+                  php-version: "7.4"
+                  extensions: mbstring
+
+            - name: Cache PHP dependencies
+              uses: actions/cache@v2
+              with:
+                  path: vendor
+                  key: ${{ runner.OS }}-php-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: ${{ runner.OS }}-php-
+
+            - name: Install PHP dependencies
+              run: composer install --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --no-dev --optimize-autoloader --prefer-dist
+
+            - name: Upload dependencies to the Server
+              uses: sebastianpopp/ftp-action@v2.0.0
+              with:
+                  host: 51.79.18.72
+                  user: copeiorg_git@copei.org.ve
+                  password: l*N"7re<m&nZ`UySMg
+                  localDir: "vendor"
+                  remoteDir: "reportes-community-managers-bot/vendor"

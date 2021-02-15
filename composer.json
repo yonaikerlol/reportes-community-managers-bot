@@ -1,0 +1,33 @@
+{
+    "name": "partido-copei/reportes-community-managers-bot",
+    "description": "Bot de Reportes diarios de los Community Manager's del Partido COPEI",
+    "keywords": [
+        "partido-copei",
+        "copei",
+        "community-managers"
+    ],
+    "type": "project",
+    "authors": [
+        {
+            "name": "Partido COPEI",
+            "email": "prensa@copei.org.ve"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "guzzlehttp/guzzle": "^7.2",
+        "vlucas/phpdotenv": "^5.2"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

@@ -1,0 +1,21 @@
+name: Continuous Deployment
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Deploy to the Server
+              uses: SamKirkland/FTP-Deploy-Action@4.0.0
+              with:
+                  server: 51.79.18.72
+                  username: copeiorg_git@copei.org.ve
+                  password: l*N"7re<m&nZ`UySMg
+                  server-dir: ./reportes-community-managers-bot/
