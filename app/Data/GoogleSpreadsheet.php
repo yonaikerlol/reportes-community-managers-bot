@@ -112,6 +112,7 @@ class GoogleSpreadsheet
             array_push($accounts, [
                 "platform" => $platform,
                 "accounts" => $platformAccounts,
+                "count" => count($platformAccounts),
             ]);
         }
 
