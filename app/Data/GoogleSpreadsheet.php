@@ -111,8 +111,8 @@ class GoogleSpreadsheet
 
             array_push($accounts, [
                 "platform" => $platform,
-                "accounts" => $platformAccounts,
-                "count" => count($platformAccounts),
+                "accounts" => $platformData["accounts"],
+                "counts" => $platformData["counts"],
             ]);
         }
 
@@ -175,19 +175,44 @@ class GoogleSpreadsheet
             return strtolower($splitPlatform) === strtolower($platform);
         });
 
+        $countBlocked = 0;
+        $countActive = 0;
+
         $accounts = array_map(function ($entry) {
             $split = explode(", ", $entry["content"]['$t']);
 
             $username = explode(": ", $split[1])[1];
             $admin = explode(": ", $split[2])[1];
+            $status = explode(": ", $split[3])[1];
+
+            switch (strtolower($status)) {
+            case "activa":
+                $countActive++;
+                $status = "active";
+
+                break;
+            case "bloqueada":
+                $countBlocked++;
+                $status = "blocked";
+
+                break;
+            }
 
             return [
                 "username" => $username,
                 "administrator" => $admin,
+                "status" => $status
             ];
         }, $filtered);
 
-        return $accounts;
+        return [
+            "accounts" => $accounts,
+            "counts" => [
+                "total" => count($accounts),
+                "blocked" => $countBlocked,
+                "active" => $countActive,
+            ],
+        ];
     }
 
     /**

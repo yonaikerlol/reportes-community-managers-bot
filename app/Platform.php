@@ -22,31 +22,32 @@ class Platform
             $outputPlatform = [
                 "platform" => $platform,
                 "accounts" => [],
-                "count" => $platformAccounts["count"],
+                "counts" => $platformAccounts["counts"],
             ];
 
             switch ($platform) {
             case "Instagram":
-                $rateLimit = 0;
+                $rateLimitPerMinute = 0;
 
                 foreach ($platformAccounts["accounts"] as $account) {
-                    if ($rateLimit === 5) {
+                    if ($rateLimitPerMinute === 5) {
                         sleep(90);
-                        $rateLimit = 0;
+                        $rateLimitPerMinute = 0;
                     }
 
                     $instagramAccount = new Instagram(
                         str_replace("@", "", $account["username"])
                     );
-                    $instagramAccountData = $instagramAccount->fetchData();
+                    $instagramAccountData = $account["status"] === "active" ? $instagramAccount->fetchData() : null;
 
                     array_push($outputPlatform["accounts"], [
                         "username" => $account["username"],
                         "administrator" => $account["administrator"],
+                        "status" => $account["status"],
                         "data" => $instagramAccountData,
                     ]);
 
-                    $rateLimit++;
+                    $rateLimitPerMinute++;
                 }
 
                 break;
