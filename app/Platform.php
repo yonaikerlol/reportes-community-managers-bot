@@ -26,30 +26,30 @@ class Platform
             ];
 
             switch ($platform) {
-            case "Instagram":
-                $rateLimit = 0;
+                case "Instagram":
+                    $rateLimit = 0;
 
-                foreach ($platformAccounts["accounts"] as $account) {
-                    if ($rateLimit === 5) {
-                        sleep(90);
-                        $rateLimit = 0;
+                    foreach ($platformAccounts["accounts"] as $account) {
+                        if ($rateLimit === 5) {
+                            sleep(90);
+                            $rateLimit = 0;
+                        }
+
+                        $instagramAccount = new Instagram(
+                            str_replace("@", "", $account["username"])
+                        );
+                        $instagramAccountData = $instagramAccount->fetchData();
+
+                        array_push($outputPlatform["accounts"], [
+                            "username" => $account["username"],
+                            "administrator" => $account["administrator"],
+                            "data" => $instagramAccountData,
+                        ]);
+
+                        $rateLimit++;
                     }
 
-                    $instagramAccount = new Instagram(
-                        str_replace("@", "", $account["username"])
-                    );
-                    $instagramAccountData = $instagramAccount->fetchData();
-
-                    array_push($outputPlatform["accounts"], [
-                        "username" => $account["username"],
-                        "administrator" => $account["administrator"],
-                        "data" => $instagramAccountData,
-                    ]);
-
-                    $rateLimit++;
-                }
-
-                break;
+                    break;
             }
 
             array_push($output, $outputPlatform);
