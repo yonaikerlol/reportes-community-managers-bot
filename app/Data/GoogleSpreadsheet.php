@@ -186,22 +186,22 @@ class GoogleSpreadsheet
             $status = explode(": ", $split[3])[1];
 
             switch (strtolower($status)) {
-            case "activa":
-                $countActive++;
-                $status = "active";
+                case "activa":
+                    $countActive++;
+                    $status = "active";
 
-                break;
-            case "bloqueada":
-                $countBlocked++;
-                $status = "blocked";
+                    break;
+                case "bloqueada":
+                    $countBlocked++;
+                    $status = "blocked";
 
-                break;
+                    break;
             }
 
             return [
                 "username" => $username,
                 "administrator" => $admin,
-                "status" => $status
+                "status" => $status,
             ];
         }, $filtered);
 

@@ -26,31 +26,34 @@ class Platform
             ];
 
             switch ($platform) {
-            case "Instagram":
-                $rateLimitPerMinute = 0;
+                case "Instagram":
+                    $rateLimitPerMinute = 0;
 
-                foreach ($platformAccounts["accounts"] as $account) {
-                    if ($rateLimitPerMinute === 5) {
-                        sleep(90);
-                        $rateLimitPerMinute = 0;
+                    foreach ($platformAccounts["accounts"] as $account) {
+                        if ($rateLimitPerMinute === 5) {
+                            sleep(90);
+                            $rateLimitPerMinute = 0;
+                        }
+
+                        $instagramAccount = new Instagram(
+                            str_replace("@", "", $account["username"])
+                        );
+                        $instagramAccountData =
+                            $account["status"] === "active"
+                                ? $instagramAccount->fetchData()
+                                : null;
+
+                        array_push($outputPlatform["accounts"], [
+                            "username" => $account["username"],
+                            "administrator" => $account["administrator"],
+                            "status" => $account["status"],
+                            "data" => $instagramAccountData,
+                        ]);
+
+                        $rateLimitPerMinute++;
                     }
 
-                    $instagramAccount = new Instagram(
-                        str_replace("@", "", $account["username"])
-                    );
-                    $instagramAccountData = $account["status"] === "active" ? $instagramAccount->fetchData() : null;
-
-                    array_push($outputPlatform["accounts"], [
-                        "username" => $account["username"],
-                        "administrator" => $account["administrator"],
-                        "status" => $account["status"],
-                        "data" => $instagramAccountData,
-                    ]);
-
-                    $rateLimitPerMinute++;
-                }
-
-                break;
+                    break;
             }
 
             array_push($output, $outputPlatform);
