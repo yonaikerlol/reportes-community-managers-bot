@@ -107,7 +107,7 @@ class GoogleSpreadsheet
         $accounts = [];
 
         foreach ($platforms as $platform) {
-            $platformAccounts = $this->_filterByPlatform($entrys, $platform);
+            $platformData = $this->_filterByPlatform($entrys, $platform);
 
             array_push($accounts, [
                 "platform" => $platform,
@@ -178,7 +178,7 @@ class GoogleSpreadsheet
         $countBlocked = 0;
         $countActive = 0;
 
-        $accounts = array_map(function ($entry) {
+        $accounts = array_map(function ($entry) use($countActive, $countBlocked) {
             $split = explode(", ", $entry["content"]['$t']);
 
             $username = explode(": ", $split[1])[1];
