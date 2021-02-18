@@ -179,8 +179,8 @@ class GoogleSpreadsheet
         $countActive = 0;
 
         $accounts = array_map(function ($entry) use (
-            $countActive,
-            $countBlocked
+            &$countActive,
+            &$countBlocked
         ) {
             $split = explode(", ", $entry["content"]['$t']);
 
