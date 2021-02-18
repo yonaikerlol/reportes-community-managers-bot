@@ -178,7 +178,10 @@ class GoogleSpreadsheet
         $countBlocked = 0;
         $countActive = 0;
 
-        $accounts = array_map(function ($entry) use($countActive, $countBlocked) {
+        $accounts = array_map(function ($entry) use (
+            $countActive,
+            $countBlocked
+        ) {
             $split = explode(", ", $entry["content"]['$t']);
 
             $username = explode(": ", $split[1])[1];
@@ -203,7 +206,8 @@ class GoogleSpreadsheet
                 "administrator" => $admin,
                 "status" => $status,
             ];
-        }, $filtered);
+        },
+        $filtered);
 
         return [
             "accounts" => $accounts,
