@@ -270,11 +270,11 @@ class GoogleSpreadsheet
         $platforms = $this->_getPlatforms($filtered);
 
         foreach ($platforms as $platform) {
-            $platformAccounts = $this->_filterByPlatform($filtered, $platform);
+            $platformData = $this->_filterByPlatform($filtered, $platform);
 
             array_push($accounts["byPlatform"], [
                 "platform" => $platform,
-                "count" => count($platformAccounts),
+                "count" => count($platformData["accounts"]),
             ]);
         }
 
