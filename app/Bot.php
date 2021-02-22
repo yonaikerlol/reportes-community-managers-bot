@@ -67,7 +67,7 @@ class Bot
             $spreadsheetData["accounts"]
         );
         $spreadsheetData["accounts"] = $platformsData;
-        $spreadsheetData["generatedAt"] = date("H:i:s A");
+        $spreadsheetData["generatedAt"] = date("h:i:s A");
 
         $output = json_encode($spreadsheetData);
         $outputFilename = $this->outputPath . "/" . date("d-m-Y") . ".json";
