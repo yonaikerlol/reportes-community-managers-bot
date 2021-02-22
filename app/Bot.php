@@ -64,7 +64,7 @@ class Bot
         $spreadsheetData = $spreadsheet->fetchData();
 
         $platformsData = Platform::getDataOfAllPlatforms(
-             $spreadsheetData["accounts"]
+            $spreadsheetData["accounts"]
         );
         $spreadsheetData["accounts"] = $platformsData;
         $spreadsheetData["generatedAt"] = date("H:i:s A");
