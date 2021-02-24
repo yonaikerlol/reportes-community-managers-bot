@@ -4,6 +4,7 @@ namespace App;
 
 use App\Data\GoogleSpreadsheet;
 use App\Platform;
+use App\Utils\DateTime;
 
 class Bot
 {
@@ -63,11 +64,12 @@ class Bot
         $spreadsheet = new GoogleSpreadsheet($_ENV["GOOGLE_SPREADSHEET_ID"]);
         $spreadsheetData = $spreadsheet->fetchData();
 
-        $platformsData = Platform::getDataOfAllPlatforms(
-            $spreadsheetData["accounts"]
-        );
-        $spreadsheetData["accounts"] = $platformsData;
+        // $platformsData = Platform::getDataOfAllPlatforms(
+        //     $spreadsheetData["accounts"]
+        // );
+        // $spreadsheetData["accounts"] = $platformsData;
         $spreadsheetData["generatedAt"] = date("h:i:s A");
+        $spreadsheetData["weekOfMonth"] = DateTime::weekOfMonth(date("Y-m-d"));
 
         $output = json_encode($spreadsheetData);
         $outputFilename = $this->outputPath . "/" . date("d-m-Y") . ".json";
