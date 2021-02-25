@@ -63,13 +63,13 @@ class Instagram extends Platform
         $response = $client->request(
             "GET",
             "https://" .
-                $_ENV["RAPIDAPI_INSTAGRAM_HOST"] .
+                getenv("RAPIDAPI_INSTAGRAM_HOST") .
                 "/v1/profile/" .
                 $this->getUsername(),
             [
                 "headers" => [
-                    "X-Rapidapi-Key" => $_ENV["RAPIDAPI_KEY"],
-                    "X-Rapidapi-Host" => $_ENV["RAPIDAPI_INSTAGRAM_HOST"],
+                    "X-Rapidapi-Key" => getenv("RAPIDAPI_KEY"),
+                    "X-Rapidapi-Host" => getenv("RAPIDAPI_INSTAGRAM_HOST"),
                 ],
             ]
         );

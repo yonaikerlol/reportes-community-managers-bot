@@ -61,7 +61,7 @@ class Bot
      */
     public function run(): void
     {
-        $spreadsheet = new GoogleSpreadsheet($_ENV["GOOGLE_SPREADSHEET_ID"]);
+        $spreadsheet = new GoogleSpreadsheet(getenv("GOOGLE_SPREADSHEET_ID"));
         $spreadsheetData = $spreadsheet->fetchData();
 
         // $platformsData = Platform::getDataOfAllPlatforms(
