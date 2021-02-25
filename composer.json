@@ -12,6 +12,10 @@
         {
             "name": "Partido COPEI",
             "email": "info@copei.org.ve"
+        },
+        {
+            "name": "Leober Ramos",
+            "email": "leober.ramos33@gmail.com"
         }
     ],
     "require": {
