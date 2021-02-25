@@ -61,13 +61,13 @@ class Bot
      */
     public function run(): void
     {
-        $spreadsheet = new GoogleSpreadsheet(getenv("GOOGLE_SPREADSHEET_ID"));
+        $spreadsheet = new GoogleSpreadsheet($_ENV["GOOGLE_SPREADSHEET_ID"]);
         $spreadsheetData = $spreadsheet->fetchData();
 
-        // $platformsData = Platform::getDataOfAllPlatforms(
-        //     $spreadsheetData["accounts"]
-        // );
-        // $spreadsheetData["accounts"] = $platformsData;
+        $platformsData = Platform::getDataOfAllPlatforms(
+            $spreadsheetData["accounts"]
+        );
+        $spreadsheetData["accounts"] = $platformsData;
         $spreadsheetData["generatedAt"] = date("h:i:s A");
         $spreadsheetData["weekOfMonth"] = DateTime::weekOfMonth(date("Y-m-d"));
 
