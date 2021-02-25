@@ -54,6 +54,15 @@ class Platform
                     }
 
                     break;
+
+                default:
+                    foreach ($platformAccounts["accounts"] as $account) {
+                        array_push($outputPlatform["accounts"], [
+                            "username" => $account["username"],
+                            "administrator" => $account["administrator"],
+                            "status" => $account["status"],
+                        ]);
+                    }
             }
 
             array_push($output, $outputPlatform);
