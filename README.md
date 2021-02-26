@@ -3,9 +3,10 @@
 Este es un bot para generar reportes automatizados sobre los Community Manager's del Partido COPEI.
 
 Se generan datos tales como:
-* Seguidores, publicaciones, y entre otros datos de las cuentas de administradores.
-* Cuantas cuentas tenemos disponibles, activas, y bloqueadas de cada plataforma.
-* Cuantas cuentas tiene cada administrador y de que plataforma.
+
+-   Seguidores, publicaciones, y entre otros datos de las cuentas de administradores.
+-   Cuantas cuentas tenemos disponibles, activas, y bloqueadas de cada plataforma.
+-   Cuantas cuentas tiene cada administrador y de que plataforma.
 
 Se usa RapidAPI para utilizar la API de Instagram y obtener los datos de esta plataforma en cada cuenta.
 
