@@ -50,6 +50,7 @@ class Platform
                             "data" => $instagramAccountData,
                         ]);
 
+                        sleep(5); // Sleep 5 seconds before trying again.
                         $rateLimitPerMinute++;
                     }
 
