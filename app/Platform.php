@@ -31,7 +31,7 @@ class Platform
 
                     foreach ($platformAccounts["accounts"] as $account) {
                         if ($rateLimitPerMinute === 5) {
-                            sleep(90);
+                            sleep(120); // Sleep 2 minutes before trying again due to the call limit per minute.
                             $rateLimitPerMinute = 0;
                         }
 
