@@ -14,7 +14,7 @@ if (file_exists(__DIR__ . "/../.env")) {
     // Otherwise, in this directory
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 } else {
-    die("Envioronment variables is not found. Verify your .env file\n");
+    die("Environment variables is not found. Verify your .env file\n");
 }
 
 // Load dotenv
